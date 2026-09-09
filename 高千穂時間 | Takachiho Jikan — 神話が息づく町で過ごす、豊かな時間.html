@@ -1,0 +1,671 @@
+U<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高千穂時間 | Takachiho Jikan — 神話が息づく町で過ごす、豊かな時間</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;500;600&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#101F35;
+    --navy-deep:#0A1626;
+    --green:#1B3A2E;
+    --sun:#E8B453;
+    --sun-soft:#F3D48C;
+    --water:#7FB9C7;
+    --cream:#F6F1E6;
+    --white:#FFFFFF;
+    --ink:#16241F;
+    --line: rgba(16,31,53,0.12);
+    --serif:'Noto Serif JP','Cormorant Garamond',serif;
+    --sans:'Noto Sans JP',sans-serif;
+    --eng:'Cormorant Garamond',serif;
+    --ease:cubic-bezier(.22,.61,.36,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--sans);
+    background:var(--cream);
+    color:var(--ink);
+    overflow-x:hidden;
+    font-weight:300;
+    letter-spacing:.02em;
+  }
+  ::selection{background:var(--sun-soft);color:var(--navy-deep);}
+  img,svg{display:block;max-width:100%;}
+  a{color:inherit;text-decoration:none;}
+  .eyebrow{
+    font-family:var(--eng);
+    font-style:italic;
+    font-size:14px;
+    letter-spacing:.28em;
+    text-transform:uppercase;
+    opacity:.7;
+  }
+  h1,h2,h3{font-family:var(--serif);font-weight:400;}
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity 1.1s var(--ease), transform 1.1s var(--ease);}
+  .reveal.in{opacity:1;transform:translateY(0);}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 6vw;}
+  @media(min-width:1300px){.wrap{padding:0 60px;}}
+
+  /* ===================== HEADER ===================== */
+  header{
+    position:fixed;top:0;left:0;width:100%;z-index:100;
+    padding:26px 6vw;
+    display:flex;align-items:center;justify-content:space-between;
+    transition:background .6s var(--ease), padding .5s var(--ease), backdrop-filter .6s var(--ease), border-color .6s var(--ease);
+    border-bottom:1px solid transparent;
+  }
+  header.scrolled{
+    padding:16px 6vw;
+    background:rgba(246,241,230,0.55);
+    backdrop-filter:blur(16px) saturate(140%);
+    -webkit-backdrop-filter:blur(16px) saturate(140%);
+    border-bottom:1px solid var(--line);
+  }
+  .logo{
+    font-family:var(--serif);font-weight:500;font-size:20px;letter-spacing:.08em;
+    color:var(--white);transition:color .6s var(--ease);
+    display:flex;flex-direction:column;line-height:1.1;
+  }
+  header.scrolled .logo{color:var(--navy-deep);}
+  .logo small{font-family:var(--eng);font-style:italic;font-size:11px;letter-spacing:.22em;opacity:.65;font-weight:400;}
+  nav.mainnav{display:flex;gap:34px;font-size:14px;color:rgba(255,255,255,.88);transition:color .6s var(--ease);}
+  header.scrolled nav.mainnav{color:var(--navy-deep);}
+  nav.mainnav a{position:relative;padding:4px 0;}
+  nav.mainnav a::after{content:'';position:absolute;left:0;bottom:0;height:1px;width:0;background:currentColor;transition:width .4s var(--ease);}
+  nav.mainnav a:hover::after{width:100%;}
+  .head-right{display:flex;align-items:center;gap:22px;font-size:13px;color:rgba(255,255,255,.85);transition:color .6s var(--ease);}
+  header.scrolled .head-right{color:var(--navy-deep);}
+  .plan-btn{
+    border:1px solid currentColor;padding:9px 20px;border-radius:100px;font-size:12.5px;letter-spacing:.08em;
+    transition:background .35s var(--ease), color .35s var(--ease);
+  }
+  .plan-btn:hover{background:var(--sun);border-color:var(--sun);color:var(--navy-deep);}
+  @media(max-width:880px){nav.mainnav{display:none;}}
+
+  /* ===================== HERO ===================== */
+  .hero{
+    position:relative;height:100svh;min-height:640px;overflow:hidden;
+    display:flex;align-items:flex-end;
+    background:var(--navy-deep);
+  }
+  .hero-photo{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;
+    opacity:.9;transition:opacity .6s var(--ease);
+  }
+  .hero-sky{
+    position:absolute;inset:0;z-index:1;
+    background:linear-gradient(180deg,#0B1830 0%,#1B3A55 26%,#3E6B7A 48%,#B98A5E 66%,#E8B453 78%,#1B3A2E 100%);
+    background-size:100% 500%;
+    animation:daycycle 42s ease-in-out infinite;
+    mix-blend-mode:soft-light;opacity:.9;
+  }
+  .hero:not(.has-photo) .hero-sky{mix-blend-mode:normal;opacity:1;}
+  @keyframes daycycle{
+    0%{background-position:0 0%;}
+    20%{background-position:0 22%;}
+    45%{background-position:0 48%;}
+    70%{background-position:0 74%;}
+    90%{background-position:0 92%;}
+    100%{background-position:0 0%;}
+  }
+  .hero-mist{position:absolute;inset:0;mix-blend-mode:screen;opacity:.55;pointer-events:none;}
+  .mist-layer{position:absolute;bottom:0;left:-10%;width:120%;height:46%;
+    background:radial-gradient(ellipse at 50% 100%, rgba(255,255,255,.35), transparent 70%);
+    filter:blur(18px);animation:drift 26s ease-in-out infinite;}
+  .mist-layer.m2{bottom:6%;height:30%;animation-duration:34s;animation-direction:reverse;opacity:.6;}
+  @keyframes drift{0%,100%{transform:translateX(-3%);}50%{transform:translateX(3%);}}
+  .ridge{position:absolute;bottom:0;left:0;width:100%;}
+  .ridge svg{width:100%;height:auto;display:block;}
+  .hero-content{
+    position:relative;z-index:5;width:100%;padding:0 6vw 9vw;
+    text-align:center;color:var(--white);
+  }
+  .hero-eyebrow{font-family:var(--eng);font-style:italic;letter-spacing:.4em;font-size:13px;opacity:.85;text-transform:uppercase;margin-bottom:22px;}
+  .hero h1{
+    font-size:clamp(34px,6vw,72px);line-height:1.42;font-weight:300;
+    text-shadow:0 2px 24px rgba(0,0,0,.28);
+  }
+  .hero h1 .accent{font-family:var(--eng);font-style:italic;font-size:.55em;display:block;margin-top:14px;letter-spacing:.12em;opacity:.9;}
+  .hero-cta{
+    margin-top:40px;display:inline-flex;align-items:center;gap:12px;
+    font-family:var(--eng);font-style:italic;font-size:15px;letter-spacing:.06em;
+    color:var(--white);border-bottom:1px solid rgba(255,255,255,.6);padding-bottom:6px;
+    transition:opacity .3s;
+  }
+  .hero-cta:hover{opacity:.7;}
+  .scroll-cue{
+    position:absolute;left:50%;bottom:38px;transform:translateX(-50%);z-index:5;
+    display:flex;flex-direction:column;align-items:center;gap:10px;color:rgba(255,255,255,.75);
+  }
+  .scroll-cue .line{width:1px;height:46px;background:linear-gradient(180deg,rgba(255,255,255,.9),transparent);
+    animation:scrolldown 2s ease-in-out infinite;}
+  @keyframes scrolldown{0%{transform:scaleY(0);transform-origin:top;}50%{transform:scaleY(1);transform-origin:top;}
+    50.01%{transform-origin:bottom;}100%{transform:scaleY(0);transform-origin:bottom;}}
+  .scroll-cue span{font-family:var(--eng);font-style:italic;font-size:11px;letter-spacing:.3em;text-transform:uppercase;}
+
+  /* ===================== TODAY STRIP ===================== */
+  .today{
+    background:var(--navy-deep);color:var(--white);
+    padding:26px 6vw;position:relative;z-index:6;
+  }
+  .today-inner{
+    max-width:1200px;margin:0 auto;
+    display:flex;flex-wrap:wrap;gap:28px 48px;align-items:center;justify-content:space-between;
+  }
+  .today-item{display:flex;align-items:center;gap:14px;}
+  .today-item .val{font-family:var(--serif);font-size:22px;font-weight:500;color:var(--sun-soft);}
+  .today-item .lbl{font-size:11.5px;letter-spacing:.14em;opacity:.65;}
+  .dot-live{width:6px;height:6px;border-radius:50%;background:var(--water);box-shadow:0 0 0 0 rgba(127,185,199,.6);animation:pulse 2.4s infinite;}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(127,185,199,.55);}70%{box-shadow:0 0 0 9px rgba(127,185,199,0);}100%{box-shadow:0 0 0 0 rgba(127,185,199,0);}}
+
+  /* ===================== SECTION GENERIC ===================== */
+  section{position:relative;}
+  .section-pad{padding:130px 6vw;}
+  .section-head{max-width:640px;margin:0 auto 64px;text-align:center;}
+  .section-head h2{font-size:clamp(26px,3.4vw,40px);line-height:1.5;margin-top:14px;}
+  .section-head p{margin-top:20px;font-size:15px;line-height:2;opacity:.72;}
+
+  /* ===================== STORY ===================== */
+  .story{background:var(--cream);}
+  .story-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:1200px;margin:0 auto;}
+  .story-visual{aspect-ratio:4/5;border-radius:4px;overflow:hidden;position:relative;
+    background:linear-gradient(160deg,#33506B 0%, #6E8C6A 55%, #C79A5B 100%);}
+  .story-visual::after{content:'';position:absolute;inset:0;background:
+    radial-gradient(ellipse 70% 40% at 50% 100%, rgba(255,255,255,.28), transparent 70%);}
+  .story-visual .ridge-mini svg{position:absolute;bottom:0;width:100%;}
+  .photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;}
+  .story-text .eyebrow{margin-bottom:18px;}
+  .story-text h2{font-size:clamp(24px,3vw,34px);line-height:1.7;margin-bottom:26px;}
+  .story-text p{font-size:14.5px;line-height:2.05;opacity:.78;margin-bottom:16px;}
+  @media(max-width:900px){.story-grid{grid-template-columns:1fr;gap:44px;}}
+
+  /* ===================== TIME JOURNEY ===================== */
+  .journey{background:var(--navy-deep);color:var(--white);}
+  .journey-intro{text-align:center;padding:120px 6vw 40px;}
+  .journey-intro .eyebrow{color:var(--sun-soft);}
+  .journey-intro h2{font-size:clamp(26px,3.6vw,42px);margin-top:16px;line-height:1.6;}
+
+  .arc-stage{
+    position:sticky;top:0;height:100svh;display:flex;align-items:center;justify-content:center;
+    overflow:hidden;
+  }
+  .arc-sky{position:absolute;inset:0;transition:background 1.2s var(--ease);}
+  .arc-stars{position:absolute;inset:0;opacity:0;transition:opacity 1.2s var(--ease);}
+  .arc-svg-wrap{position:absolute;bottom:8%;left:0;width:100%;display:flex;justify-content:center;pointer-events:none;}
+  .arc-clock{
+    position:relative;z-index:4;text-align:center;color:var(--white);
+    display:flex;flex-direction:column;align-items:center;gap:18px;
+  }
+  .arc-time{font-family:var(--eng);font-size:clamp(46px,7vw,78px);font-style:italic;font-weight:400;letter-spacing:.03em;
+    text-shadow:0 4px 30px rgba(0,0,0,.35);}
+  .arc-period{font-family:var(--serif);font-size:clamp(22px,3vw,32px);letter-spacing:.06em;}
+  .arc-period .en{display:block;font-family:var(--eng);font-style:italic;font-size:13px;letter-spacing:.3em;text-transform:uppercase;opacity:.7;margin-top:8px;}
+  .arc-desc{max-width:420px;font-size:13.5px;line-height:2;opacity:.75;margin-top:6px;}
+  .arc-spots{margin-top:22px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
+  .arc-spot{border:1px solid rgba(255,255,255,.32);border-radius:100px;padding:8px 18px;font-size:12px;letter-spacing:.04em;}
+
+  .journey-track{position:relative;}
+  .journey-panel{height:100svh;}
+
+  /* ===================== COURSES ===================== */
+  .courses{background:var(--cream);}
+  .course-tabs{display:flex;justify-content:center;gap:10px;margin-bottom:60px;flex-wrap:wrap;}
+  .tab-btn{
+    font-family:var(--eng);font-style:italic;font-size:14px;letter-spacing:.05em;
+    padding:10px 24px;border:1px solid var(--line);border-radius:100px;background:transparent;cursor:pointer;
+    transition:all .35s var(--ease);color:var(--ink);
+  }
+  .tab-btn.active,.tab-btn:hover{background:var(--navy);color:var(--white);border-color:var(--navy);}
+  .course-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--line);max-width:1200px;margin:0 auto;}
+  .course-card{background:var(--cream);padding:52px 44px;transition:background .4s var(--ease);}
+  .course-card:hover{background:var(--white);}
+  .course-tag{font-family:var(--eng);font-style:italic;font-size:12px;letter-spacing:.2em;opacity:.55;text-transform:uppercase;}
+  .course-card h3{font-size:22px;margin:14px 0 18px;line-height:1.6;}
+  .course-steps{font-size:13px;line-height:2.3;opacity:.72;}
+  @media(max-width:760px){.course-grid{grid-template-columns:1fr;}}
+
+  /* ===================== STAY / GOURMET (choose-by-feeling cards) ===================== */
+  .choose-section{background:var(--white);}
+  .choose-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;max-width:1200px;margin:0 auto;}
+  .choose-card{
+    position:relative;aspect-ratio:3/4;border-radius:6px;overflow:hidden;cursor:pointer;
+  }
+  .choose-card .bg{position:absolute;inset:0;transition:transform 1s var(--ease);}
+  .choose-card:hover .bg{transform:scale(1.06);}
+  .choose-card .bg img{width:100%;height:100%;object-fit:cover;}
+  .choose-card .shade{position:absolute;inset:0;background:linear-gradient(180deg, rgba(16,31,53,0) 30%, rgba(10,22,38,.88) 100%);}
+  .choose-card .info{position:absolute;left:0;bottom:0;padding:28px;color:var(--white);}
+  .choose-card .info .eyebrow{color:var(--sun-soft);opacity:1;margin-bottom:8px;}
+  .choose-card .info h3{font-size:19px;line-height:1.6;}
+  @media(max-width:900px){.choose-grid{grid-template-columns:1fr;}}
+
+  /* Stay bg variants */
+  .bg-stay-1{background:linear-gradient(155deg,#16283F,#3B5A52);}
+  .bg-stay-2{background:linear-gradient(155deg,#26170F,#7A4A2E);}
+  .bg-stay-3{background:linear-gradient(155deg,#0E1B33,#274B5B);}
+  .bg-food-1{background:linear-gradient(155deg,#3A1E14,#8A5A2C);}
+  .bg-food-2{background:linear-gradient(155deg,#22301B,#5C7A46);}
+  .bg-food-3{background:linear-gradient(155deg,#2A2116,#B98A4E);}
+
+  /* ===================== EXPERIENCE ===================== */
+  .exp-section{background:var(--green);color:var(--white);}
+  .exp-grid{display:grid;grid-template-columns:repeat(4,1fr);max-width:1200px;margin:0 auto;border-top:1px solid rgba(255,255,255,.16);}
+  .exp-item{
+    padding:44px 26px;border-right:1px solid rgba(255,255,255,.16);border-bottom:1px solid rgba(255,255,255,.16);
+    transition:background .4s var(--ease);
+  }
+  .exp-item:hover{background:rgba(255,255,255,.06);}
+  .exp-item .num{font-family:var(--eng);font-style:italic;font-size:13px;opacity:.5;}
+  .exp-item h3{font-size:18px;margin:16px 0 10px;}
+  .exp-item p{font-size:12.5px;line-height:1.9;opacity:.65;}
+  @media(max-width:900px){.exp-grid{grid-template-columns:repeat(2,1fr);}}
+
+  /* ===================== JOURNAL ===================== */
+  .journal{background:var(--cream);}
+  .journal-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:2px;background:var(--line);max-width:1200px;margin:0 auto;}
+  .journal-card{background:var(--cream);position:relative;overflow:hidden;min-height:340px;display:flex;align-items:flex-end;}
+  .journal-card:first-child{grid-row:span 2;min-height:704px;}
+  .journal-card .bg{position:absolute;inset:0;}
+  .journal-card .bg img{width:100%;height:100%;object-fit:cover;}
+  .journal-card .shade{position:absolute;inset:0;background:linear-gradient(180deg, transparent 40%, rgba(10,22,38,.85));}
+  .journal-card .info{position:relative;z-index:2;padding:30px;color:var(--white);}
+  .journal-card .cat{font-family:var(--eng);font-style:italic;font-size:12px;letter-spacing:.2em;color:var(--sun-soft);text-transform:uppercase;}
+  .journal-card h3{font-size:18px;margin-top:10px;line-height:1.6;}
+  .jbg-1{background:linear-gradient(160deg,#12233B,#37506B 45%,#8AA491);}
+  .jbg-2{background:linear-gradient(160deg,#22140F,#7B4A2C);}
+  .jbg-3{background:linear-gradient(160deg,#0F1E2E,#274B4A);}
+  .jbg-4{background:linear-gradient(160deg,#241A0E,#6B5A2C);}
+  @media(max-width:900px){.journal-grid{grid-template-columns:1fr;}.journal-card:first-child{grid-row:span 1;min-height:340px;}}
+
+  /* ===================== ACCESS ===================== */
+  .access{background:var(--navy-deep);color:var(--white);}
+  .access-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;max-width:1200px;margin:0 auto;align-items:center;}
+  .access-map{aspect-ratio:4/3;border-radius:4px;background:
+    radial-gradient(circle at 30% 30%, rgba(232,180,83,.18), transparent 55%),
+    linear-gradient(160deg,#16283F,#1B3A2E);position:relative;overflow:hidden;}
+  .access-map svg{position:absolute;inset:0;width:100%;height:100%;opacity:.5;}
+  .access-list{font-size:14px;line-height:2.4;opacity:.82;}
+  .access-list dt{font-family:var(--eng);font-style:italic;font-size:12px;letter-spacing:.2em;opacity:.55;margin-top:22px;text-transform:uppercase;}
+  .access-list dt:first-child{margin-top:0;}
+  @media(max-width:900px){.access-grid{grid-template-columns:1fr;gap:40px;}}
+
+  /* ===================== FOOTER ===================== */
+  footer{background:var(--navy-deep);color:rgba(255,255,255,.6);padding:90px 6vw 40px;text-align:center;border-top:1px solid rgba(255,255,255,.1);}
+  footer h2{color:var(--white);font-size:clamp(24px,3vw,34px);font-weight:300;line-height:1.7;}
+  .foot-nav{display:flex;gap:30px;justify-content:center;flex-wrap:wrap;margin:44px 0;font-size:13px;}
+  .foot-bottom{font-family:var(--eng);font-style:italic;font-size:12px;letter-spacing:.06em;opacity:.5;margin-top:50px;}
+
+  ::-webkit-scrollbar{width:9px;}
+  ::-webkit-scrollbar-track{background:var(--cream);}
+  ::-webkit-scrollbar-thumb{background:var(--navy);border-radius:10px;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.001s !important;transition-duration:.2s !important;}
+  }
+  :focus-visible{outline:2px solid var(--sun);outline-offset:3px;}
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <div class="logo">高千穂時間<small>TAKACHIHO JIKAN</small></div>
+  <nav class="mainnav">
+    <a href="#story">高千穂とは</a>
+    <a href="#journey">神話</a>
+    <a href="#experience">体験</a>
+    <a href="#stay">宿泊</a>
+    <a href="#gourmet">グルメ</a>
+    <a href="#journal">JOURNAL</a>
+  </nav>
+  <div class="head-right">
+    <span style="cursor:pointer;">EN</span>
+    <a href="#" class="plan-btn">旅を計画する</a>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="heroSection">
+  <img class="hero-photo" src="images/hero-valley.jpg" alt="霧に包まれた高千穂峡の渓谷"
+       onload="this.closest('.hero').classList.add('has-photo')"
+       onerror="this.remove()">
+  <div class="hero-sky"></div>
+  <div class="hero-mist"><div class="mist-layer"></div><div class="mist-layer m2"></div></div>
+  <div class="ridge">
+    <svg viewBox="0 0 1440 220" preserveAspectRatio="none"><path d="M0,140 C220,60 380,180 560,110 C740,40 860,160 1040,90 C1220,30 1320,120 1440,80 L1440,220 L0,220 Z" fill="#0A1626" opacity="0.85"/><path d="M0,190 C260,130 460,200 700,150 C900,110 1100,190 1440,150 L1440,220 L0,220 Z" fill="#0A1626"/></svg>
+  </div>
+  <div class="hero-content reveal in">
+    <p class="hero-eyebrow">Miyazaki · Japan</p>
+    <h1>神話が息づく町で、<br>自然とともに過ごす豊かな時間。
+      <span class="accent">A day that flows like myth, in Takachiho.</span>
+    </h1>
+    <a href="#journey" class="hero-cta">旅をはじめる &nbsp;―</a>
+  </div>
+  <div class="scroll-cue"><span>Scroll</span><div class="line"></div></div>
+</section>
+
+<!-- ===================== TODAY STRIP ===================== -->
+<div class="today">
+  <div class="today-inner">
+    <div class="today-item"><span class="dot-live"></span><span class="lbl">今日の高千穂</span></div>
+    <div class="today-item"><span class="val">18℃</span><span class="lbl">晴れのち霧</span></div>
+    <div class="today-item"><span class="val">72%</span><span class="lbl">雲海期待度・today</span></div>
+    <div class="today-item"><span class="val">19:00〜</span><span class="lbl">観光夜神楽 開催</span></div>
+    <div class="today-item"><span class="val">05:40</span><span class="lbl">日の出</span></div>
+  </div>
+</div>
+
+<!-- ===================== STORY ===================== -->
+<section class="story section-pad" id="story">
+  <div class="story-grid">
+    <div class="story-visual reveal">
+      <img class="photo" src="images/story-shrine.jpg" alt="高千穂神社の杜と参道" onerror="this.remove()">
+      <div class="ridge-mini">
+        <svg viewBox="0 0 600 220" preserveAspectRatio="none"><path d="M0,140 C120,80 220,170 320,110 C420,60 480,150 600,100 L600,220 L0,220 Z" fill="#12233B" opacity="0.7"/></svg>
+      </div>
+    </div>
+    <div class="story-text">
+      <p class="eyebrow">Our Story</p>
+      <h2>渓谷に霧が満ち、<br>神々が今も歩いているような町。</h2>
+      <p>高千穂は、天孫降臨の神話が今も暮らしの中に息づく場所です。切り立った渓谷、湧き続ける水、夜ごと奉納される神楽——ここでは自然と信仰が分かれることなく、ひとつの時間として流れています。</p>
+      <p>私たちが紹介したいのは、観光スポットの一覧ではありません。朝霧の匂い、渓谷を渡るボートの静けさ、夜神楽の炎、星空の下で聞く笛の音——高千穂だけが持つ「時間の質感」です。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TIME JOURNEY ===================== -->
+<section class="journey" id="journey">
+  <div class="journey-intro reveal">
+    <p class="eyebrow">Time Journey</p>
+    <h2>スクロールするごとに、<br>高千穂の一日が進んでいく。</h2>
+  </div>
+
+  <div class="journey-track" id="journeyTrack">
+    <div class="arc-stage">
+      <div class="arc-sky" id="arcSky"></div>
+      <div class="arc-stars" id="arcStars"></div>
+
+      <div class="arc-svg-wrap">
+        <svg width="720" height="200" viewBox="0 0 720 200" id="arcSvg">
+          <path d="M40,180 A320,320 0 0,1 680,180" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1"/>
+          <circle id="arcSun" cx="40" cy="180" r="7" fill="var(--sun)" />
+        </svg>
+      </div>
+
+      <div class="arc-clock">
+        <p class="arc-time" id="arcTime">05:40</p>
+        <div>
+          <h3 class="arc-period" id="arcPeriodJp">朝<span class="en" id="arcPeriodEn">Morning</span></h3>
+        </div>
+        <p class="arc-desc" id="arcDesc">霧が谷を満たし、光がゆっくりと差し込む時間。空気は澄み、鳥の声だけが響いています。</p>
+        <div class="arc-spots" id="arcSpots">
+          <span class="arc-spot">高千穂神社 朝参り</span>
+          <span class="arc-spot">雲海展望所</span>
+          <span class="arc-spot">渓谷沿いの朝カフェ</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="journey-panel" data-period="morning"></div>
+    <div class="journey-panel" data-period="noon"></div>
+    <div class="journey-panel" data-period="evening"></div>
+    <div class="journey-panel" data-period="night"></div>
+  </div>
+</section>
+
+<!-- ===================== COURSES ===================== -->
+<section class="courses section-pad">
+  <div class="section-head reveal">
+    <p class="eyebrow">Model Course</p>
+    <h2>誰と、どんな時間を<br>過ごしたいかから選ぶ。</h2>
+  </div>
+  <div class="course-tabs">
+    <button class="tab-btn active">日帰り</button>
+    <button class="tab-btn">1泊2日</button>
+    <button class="tab-btn">カップル</button>
+    <button class="tab-btn">夫婦</button>
+  </div>
+  <div class="course-grid reveal">
+    <div class="course-card">
+      <p class="course-tag">Day Trip · 01</p>
+      <h3>雲海と渓谷をめぐる、澄んだ一日</h3>
+      <p class="course-steps">05:40 雲海展望所 → 08:00 高千穂神社 → 10:00 高千穂峡ボート → 12:30 高千穂牛ランチ → 15:00 天岩戸神社</p>
+    </div>
+    <div class="course-card">
+      <p class="course-tag">Day Trip · 02</p>
+      <h3>神話をたどる、静かな巡礼の一日</h3>
+      <p class="course-steps">09:00 くしふる神社 → 10:30 高千穂神社 → 12:00 郷土料理店 → 14:00 天安河原 → 16:00 夕景カフェ</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== STAY ===================== -->
+<section class="choose-section section-pad" id="stay">
+  <div class="section-head reveal">
+    <p class="eyebrow">Stay</p>
+    <h2>宿の一覧ではなく、<br>過ごしたい夜から選ぶ。</h2>
+  </div>
+  <div class="choose-grid reveal">
+    <div class="choose-card"><div class="bg bg-stay-1"><img src="images/stay-riverside.jpg" alt="渓流沿いの宿の離れ" onerror="this.remove()"></div><div class="shade"></div>
+      <div class="info"><p class="eyebrow">渓谷を望む、静寂の夜</p><h3>渓流沿いの離れで、水音とともに眠る</h3></div></div>
+    <div class="choose-card"><div class="bg bg-stay-2"><img src="images/stay-onsen.jpg" alt="源泉かけ流しの温泉" onerror="this.remove()"></div><div class="shade"></div>
+      <div class="info"><p class="eyebrow">温泉と、語らう夜</p><h3>源泉かけ流しの湯で一日を溶かす</h3></div></div>
+    <div class="choose-card"><div class="bg bg-stay-3"><img src="images/stay-stargazing.jpg" alt="高台の一棟貸し宿と星空" onerror="this.remove()"></div><div class="shade"></div>
+      <div class="info"><p class="eyebrow">星空と、静けさの夜</p><h3>高台の一棟貸しで満天の星を見上げる</h3></div></div>
+  </div>
+</section>
+
+<!-- ===================== GOURMET ===================== -->
+<section class="choose-section section-pad" id="gourmet" style="background:var(--cream);">
+  <div class="section-head reveal">
+    <p class="eyebrow">Gourmet</p>
+    <h2>食べたい料理から、<br>その日の一皿を選ぶ。</h2>
+  </div>
+  <div class="choose-grid reveal">
+    <div class="choose-card"><div class="bg bg-food-1"><img src="images/food-wagyu.jpg" alt="炭火で焼く高千穂牛" onerror="this.remove()"></div><div class="shade"></div>
+      <div class="info"><p class="eyebrow">Signature</p><h3>高千穂牛を、炭火でじっくりと</h3></div></div>
+    <div class="choose-card"><div class="bg bg-food-2"><img src="images/food-local.jpg" alt="山菜と川魚の郷土料理膳" onerror="this.remove()"></div><div class="shade"></div>
+      <div class="info"><p class="eyebrow">Local</p><h3>山菜と川魚の、郷土料理膳</h3></div></div>
+    <div class="choose-card"><div class="bg bg-food-3"><img src="images/food-cafe.jpg" alt="渓谷を眺めるカフェ" onerror="this.remove()"></div><div class="shade"></div>
+      <div class="info"><p class="eyebrow">Café</p><h3>渓谷を眺めながらの、ひと休み</h3></div></div>
+  </div>
+</section>
+
+<!-- ===================== EXPERIENCE ===================== -->
+<section class="exp-section section-pad" id="experience">
+  <div class="section-head reveal" style="color:var(--white);">
+    <p class="eyebrow">Experience</p>
+    <h2>高千穂でしかできない、<br>四つの時間。</h2>
+  </div>
+  <div class="exp-grid reveal">
+    <div class="exp-item"><p class="num">01</p><h3>高千穂峡ボート</h3><p>切り立つ柱状節理の渓谷を、水面から見上げる静かな時間。</p></div>
+    <div class="exp-item"><p class="num">02</p><h3>夜神楽</p><p>三十三番の神楽を、地区の人々とともに夜通し奉納する伝統。</p></div>
+    <div class="exp-item"><p class="num">03</p><h3>源泉かけ流しの湯</h3><p>山あいに湧く湯で、一日の歩みをゆっくりとほどく。</p></div>
+    <div class="exp-item"><p class="num">04</p><h3>神社めぐり</h3><p>天孫降臨の神話をたどる、鎮守の杜の静けさ。</p></div>
+  </div>
+</section>
+
+<!-- ===================== JOURNAL ===================== -->
+<section class="journal section-pad" id="journal">
+  <div class="section-head reveal">
+    <p class="eyebrow">Journal</p>
+    <h2>神話、自然、文化、人、食、旅。<br>高千穂の時間を綴る。</h2>
+  </div>
+  <div class="journal-grid reveal">
+    <div class="journal-card"><div class="bg jbg-1"><img src="images/journal-amanoiwato.jpg" alt="天岩戸神社の洞窟" onerror="this.remove()"></div><div class="shade"></div>
+      <div class="info"><p class="cat">神話</p><h3>天岩戸神話を訪ねて —— 光が隠れた洞窟の物語</h3></div></div>
+    <div class="journal-card"><div class="bg jbg-2"><img src="images/journal-wagyu-farmer.jpg" alt="高千穂牛を育てる生産者" onerror="this.remove()"></div><div class="shade"></div>
+      <div class="info"><p class="cat">食</p><h3>高千穂牛と、育てた人の話</h3></div></div>
+    <div class="journal-card"><div class="bg jbg-3"><img src="images/journal-unkai.jpg" alt="高千穂の雲海" onerror="this.remove()"></div><div class="shade"></div>
+      <div class="info"><p class="cat">自然</p><h3>雲海が生まれる、朝の条件</h3></div></div>
+    <div class="journal-card"><div class="bg jbg-4"><img src="images/journal-yokagura.jpg" alt="夜神楽の奉納" onerror="this.remove()"></div><div class="shade"></div>
+      <div class="info"><p class="cat">文化</p><h3>夜神楽を守り継ぐ、地区の人々</h3></div></div>
+  </div>
+</section>
+
+<!-- ===================== ACCESS ===================== -->
+<section class="access section-pad">
+  <div class="access-grid">
+    <div class="access-map reveal">
+      <svg viewBox="0 0 400 300"><path d="M40,220 C90,160 140,240 190,180 C240,120 280,200 360,150" stroke="var(--water)" stroke-width="2" fill="none"/><circle cx="190" cy="180" r="4" fill="var(--sun)"/></svg>
+    </div>
+    <div class="reveal">
+      <p class="eyebrow">Access</p>
+      <h2 style="font-size:clamp(24px,3vw,32px);margin:16px 0 30px;">福岡・熊本・宮崎から、<br>渓谷の町へ。</h2>
+      <dl class="access-list">
+        <dt>Car</dt><dd>熊本空港から車で約90分／宮崎空港から車で約100分</dd>
+        <dt>Bus</dt><dd>延岡駅より高速バスで約60分</dd>
+        <dt>Note</dt><dd>町内は坂が多いため、徒歩移動には歩きやすい靴をおすすめします</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <h2>また、高千穂でお会いしましょう。</h2>
+  <div class="foot-nav">
+    <a href="#story">高千穂とは</a><a href="#journey">神話</a><a href="#stay">宿泊</a><a href="#gourmet">グルメ</a><a href="#journal">JOURNAL</a><a href="#">アクセス</a>
+  </div>
+  <p class="foot-bottom">© TAKACHIHO JIKAN — A Brand Journey Through Myth and Nature</p>
+</footer>
+
+<script>
+// header background on scroll
+const header = document.getElementById('siteHeader');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 60);
+}, {passive:true});
+
+// reveal on view
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+}, {threshold:.18});
+revealEls.forEach(el=>io.observe(el));
+
+// tabs (visual only)
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+
+/* ===================== TIME JOURNEY — signature scroll clock ===================== */
+const periods = [
+  {
+    key:'morning', time:'05:40', jp:'朝', en:'Morning',
+    desc:'霧が谷を満たし、光がゆっくりと差し込む時間。空気は澄み、鳥の声だけが響いています。',
+    spots:['高千穂神社 朝参り','雲海展望所','渓谷沿いの朝カフェ'],
+    sky:'linear-gradient(180deg,#1B3A55 0%, #6E93A0 45%, #E3B77E 75%, #1B3A2E 100%)',
+    stars:0, sunColor:'#F3D48C'
+  },
+  {
+    key:'noon', time:'12:20', jp:'昼', en:'Noon',
+    desc:'陽の光が渓谷いっぱいに満ち、水面が輝く時間。ボートを漕ぐ音がやわらかく響きます。',
+    spots:['高千穂峡ボート','高千穂牛ランチ','くしふる神社'],
+    sky:'linear-gradient(180deg,#3E7CA8 0%, #79B4C7 45%, #E8D9A9 80%, #1B3A2E 100%)',
+    stars:0, sunColor:'#E8B453'
+  },
+  {
+    key:'evening', time:'17:10', jp:'夕方', en:'Evening',
+    desc:'空が茜色に染まり、湯けむりが立ちのぼる時間。一日の歩みをゆっくりとほどいていきます。',
+    spots:['源泉かけ流しの湯','夕景カフェ','天安河原'],
+    sky:'linear-gradient(180deg,#2B3A63 0%, #7A5B72 40%, #D97E52 70%, #E8B453 88%, #1B3A2E 100%)',
+    stars:0.2, sunColor:'#D97E52'
+  },
+  {
+    key:'night', time:'20:30', jp:'夜', en:'Night',
+    desc:'夜神楽の炎が揺れ、笛と太鼓が響く時間。見上げれば、渓谷の上に星が満ちています。',
+    spots:['観光夜神楽','星空観賞','地元料理と地酒'],
+    sky:'linear-gradient(180deg,#060D1C 0%, #0E1F3A 45%, #1B3A2E 100%)',
+    stars:1, sunColor:'#F6F1E6'
+  }
+];
+
+const arcSky = document.getElementById('arcSky');
+const arcStars = document.getElementById('arcStars');
+const arcTime = document.getElementById('arcTime');
+const arcJp = document.getElementById('arcPeriodJp');
+const arcEn = document.getElementById('arcPeriodEn');
+const arcDesc = document.getElementById('arcDesc');
+const arcSpots = document.getElementById('arcSpots');
+const arcSun = document.getElementById('arcSun');
+const track = document.getElementById('journeyTrack');
+
+// build starfield once
+let starsHTML = '';
+for(let i=0;i<70;i++){
+  const x = Math.random()*100, y = Math.random()*70, s = Math.random()*1.6+0.4, d = (Math.random()*3+2).toFixed(1);
+  starsHTML += `<div style="position:absolute;left:${x}%;top:${y}%;width:${s}px;height:${s}px;border-radius:50%;background:#fff;animation:twinkle ${d}s ease-in-out infinite;"></div>`;
+}
+arcStars.innerHTML = starsHTML;
+const styleTag = document.createElement('style');
+styleTag.textContent = '@keyframes twinkle{0%,100%{opacity:.15}50%{opacity:1}}';
+document.head.appendChild(styleTag);
+
+function pointOnArc(t){
+  // arc path approx: cx=360, cy=180+320*? using simple ellipse param from 180deg(left,180) to 0deg(right,180) over top
+  const angle = Math.PI - t*Math.PI; // PI -> 0
+  const cx = 360, cy = 180, rx = 320, ry = 320;
+  const x = cx + rx*Math.cos(angle);
+  const y = cy - ry*Math.sin(angle)*0.56; // flatten arc height
+  return {x,y};
+}
+
+let ticking = false;
+function updateJourney(){
+  ticking = false;
+  const rect = track.getBoundingClientRect();
+  const total = rect.height - window.innerHeight;
+  if(total <= 0) return;
+  let progress = (-rect.top) / total;
+  progress = Math.min(1, Math.max(0, progress));
+
+  const segCount = periods.length;
+  const segF = progress * (segCount - 1);
+  const idx = Math.min(segCount-2, Math.floor(segF));
+  const localT = segF - idx;
+  const cur = periods[idx];
+  const next = periods[idx+1];
+
+  // interpolate sky via crossfade using opacity trick: set gradient directly per nearest for perf, but crossfade using CSS var isn't trivial with gradients -> swap at midpoint with transition
+  const useNext = localT > 0.5;
+  const active = useNext ? next : cur;
+  if(arcSky.dataset.cur !== active.key){
+    arcSky.style.background = active.sky;
+    arcSky.dataset.cur = active.key;
+    arcJp.childNodes[0].nodeValue = active.jp;
+    arcEn.textContent = active.en;
+    arcDesc.textContent = active.desc;
+    arcSpots.innerHTML = active.spots.map(s=>`<span class="arc-spot">${s}</span>`).join('');
+    arcStars.style.opacity = active.stars;
+    arcSun.setAttribute('fill', active.sunColor);
+  }
+
+  // time readout interpolated smoothly across whole journey (continuous clock)
+  const startMin = 5*60+40, endMin = 20*60+30;
+  const nowMin = startMin + (endMin-startMin)*progress;
+  const hh = String(Math.floor(nowMin/60)%24).padStart(2,'0');
+  const mm = String(Math.floor(nowMin%60)).padStart(2,'0');
+  arcTime.textContent = `${hh}:${mm}`;
+
+  // sun/moon position along arc, continuous
+  const p = pointOnArc(progress);
+  arcSun.setAttribute('cx', p.x);
+  arcSun.setAttribute('cy', p.y);
+}
+
+window.addEventListener('scroll', ()=>{
+  if(!ticking){ window.requestAnimationFrame(updateJourney); ticking = true; }
+}, {passive:true});
+window.addEventListener('resize', updateJourney);
+updateJourney();
+</script>
+</body>
+</html>
